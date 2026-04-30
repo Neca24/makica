@@ -134,7 +134,7 @@ Rečenica kojom ću završiti sve ovo, a izgovorio je, za mene već Sveti čovek
 
 Ljubav je najjače oružje koje postoji, nema te sile i tog oružja koje će moći protiv ljubavi da se bori, sve se tu ruši.
 
-Srećan Rođendan, ljubavi moja.`;
+Srećan Rođendan, ljubavi moja. VOLIM TE NAJVIŠE NA SVETU!`;
 
   const $lt = $("#letter-text");
   let idx = 0;
