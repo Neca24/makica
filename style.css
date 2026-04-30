@@ -1,0 +1,563 @@
+:root {
+  --rose: #c9506a;
+  --deep-rose: #8b2d42;
+  --blush: #f5d0d8;
+  --cream: #fdf6f0;
+  --gold: #c9a84c;
+  --dark: #1a0a0f;
+  --text-soft: #5a3344;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--cream);
+  color: var(--dark);
+  font-family: "Cormorant Garamond", serif;
+  overflow-x: hidden;
+  cursor: none;
+}
+
+/* ── CUSTOM CURSOR ── */
+#cursor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 20px;
+  height: 20px;
+  background: var(--rose);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9999;
+  transform: translate(-50%, -50%);
+  transition:
+    transform 0.15s ease,
+    background 0.2s;
+  mix-blend-mode: multiply;
+}
+#cursor-trail {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 40px;
+  height: 40px;
+  border: 1.5px solid var(--rose);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9998;
+  transform: translate(-50%, -50%);
+  transition:
+    transform 0.35s ease,
+    opacity 0.3s;
+  opacity: 0.5;
+}
+
+/* ── PARTICLES ── */
+#particles-canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.6;
+}
+
+/* ── NAVBAR ── */
+.navbar {
+  background: transparent !important;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 100;
+  padding: 1.2rem 2rem;
+  transition:
+    background 0.4s,
+    backdrop-filter 0.4s;
+}
+.navbar.scrolled {
+  background: rgba(253, 246, 240, 0.85) !important;
+  backdrop-filter: blur(12px);
+  box-shadow: 0 2px 20px rgba(0, 0, 0, 0.07);
+}
+.navbar-brand {
+  font-family: "Dancing Script", cursive;
+  font-size: 1.6rem;
+  color: var(--rose) !important;
+  letter-spacing: 0.03em;
+}
+.nav-link {
+  font-family: "Cormorant Garamond", serif;
+  font-size: 1rem;
+  color: var(--text-soft) !important;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  font-size: 0.85rem;
+  margin: 0 0.5rem;
+  transition: color 0.3s;
+}
+.nav-link:hover {
+  color: var(--rose) !important;
+}
+
+/* ── HERO ── */
+#hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(160deg, #fff0f3 0%, #fdf6f0 40%, #fff5e6 100%);
+}
+.hero-content {
+  position: relative;
+  z-index: 2;
+  padding: 2rem;
+}
+
+.hero-subtitle {
+  font-family: "Dancing Script", cursive;
+  font-size: clamp(1rem, 3vw, 1.4rem);
+  color: var(--gold);
+  letter-spacing: 0.08em;
+  margin-bottom: 1rem;
+  opacity: 0;
+  animation: fadeUp 0.8s 0.3s forwards;
+}
+.hero-title {
+  font-family: "Playfair Display", serif;
+  font-size: clamp(2.8rem, 8vw, 7rem);
+  font-weight: 700;
+  line-height: 1.1;
+  color: var(--dark);
+  opacity: 0;
+  animation: fadeUp 0.9s 0.5s forwards;
+}
+.hero-title span {
+  color: var(--rose);
+  font-style: italic;
+}
+.hero-desc {
+  font-size: clamp(1.1rem, 2.5vw, 1.4rem);
+  color: var(--text-soft);
+  max-width: 520px;
+  margin: 1.5rem auto 2.5rem;
+  font-style: italic;
+  line-height: 1.7;
+  opacity: 0;
+  animation: fadeUp 0.9s 0.7s forwards;
+}
+.hero-cta {
+  display: inline-block;
+  background: linear-gradient(135deg, var(--rose), var(--deep-rose));
+  color: #fff;
+  padding: 0.85rem 2.5rem;
+  border-radius: 40px;
+  font-family: "Cormorant Garamond", serif;
+  font-size: 1.05rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition:
+    transform 0.3s,
+    box-shadow 0.3s;
+  box-shadow: 0 8px 30px rgba(201, 80, 106, 0.3);
+  opacity: 0;
+  animation: fadeUp 0.9s 0.9s forwards;
+}
+.hero-cta:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 14px 40px rgba(201, 80, 106, 0.4);
+  color: #fff;
+}
+
+/* floating petals */
+.petal {
+  position: absolute;
+  font-size: 1.4rem;
+  animation: fall linear infinite;
+  opacity: 0.7;
+  pointer-events: none;
+}
+@keyframes fall {
+  0% {
+    transform: translateY(-60px) rotate(0deg);
+    opacity: 0.7;
+  }
+  100% {
+    transform: translateY(110vh) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+/* ── SECTION COMMON ── */
+section {
+  position: relative;
+  z-index: 1;
+}
+
+.section-label {
+  font-family: "Dancing Script", cursive;
+  font-size: 1.1rem;
+  color: var(--gold);
+  letter-spacing: 0.1em;
+  display: block;
+  margin-bottom: 0.4rem;
+}
+.section-title {
+  font-family: "Playfair Display", serif;
+  font-size: clamp(2rem, 5vw, 3.2rem);
+  font-weight: 700;
+  color: var(--dark);
+  line-height: 1.2;
+}
+.section-title span {
+  color: var(--rose);
+  font-style: italic;
+}
+.divider {
+  width: 60px;
+  height: 2px;
+  background: linear-gradient(90deg, var(--rose), var(--gold));
+  margin: 1.2rem auto 0;
+  border-radius: 2px;
+}
+
+/* reveal animation */
+.reveal {
+  opacity: 0;
+  transform: translateY(40px);
+  transition:
+    opacity 0.8s ease,
+    transform 0.8s ease;
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ── GALLERY ── */
+#galerija {
+  padding: 7rem 0;
+  background: #fff;
+}
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 1.2rem;
+  margin-top: 3rem;
+}
+
+.gallery-item {
+  position: relative;
+  overflow: hidden;
+  border-radius: 16px;
+  aspect-ratio: 0.8;
+  background: var(--blush);
+  cursor: pointer;
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.08);
+  transition:
+    transform 0.4s ease,
+    box-shadow 0.4s ease;
+}
+.gallery-item:hover {
+  transform: scale(1.03);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.14);
+}
+.gallery-item img {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  transition: transform 0.6s ease;
+}
+.gallery-item:hover img {
+  transform: scale(1.08);
+}
+.gallery-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent 40%, rgba(139, 45, 66, 0.75));
+  opacity: 0;
+  transition: opacity 0.4s;
+  display: flex;
+  align-items: flex-end;
+  padding: 1.2rem;
+}
+.gallery-item:hover .gallery-overlay {
+  opacity: 1;
+}
+.gallery-caption {
+  color: #fff;
+  font-style: italic;
+  font-size: 1rem;
+  font-family: "Cormorant Garamond", serif;
+  line-height: 1.4;
+}
+
+/* placeholder for empty slots */
+.gallery-placeholder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: #c9a0b0;
+  font-size: 0.9rem;
+  font-style: italic;
+  border: 2px dashed #e8c4cc;
+  gap: 0.5rem;
+}
+.gallery-placeholder .ph-icon {
+  font-size: 2rem;
+  opacity: 0.5;
+}
+
+/* Lightbox */
+#lightbox {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(10, 3, 6, 0.92);
+  z-index: 1000;
+  align-items: center;
+  justify-content: center;
+}
+#lightbox.active {
+  display: flex;
+}
+#lightbox img {
+  max-width: 90vw;
+  max-height: 85vh;
+  border-radius: 12px;
+  box-shadow: 0 20px 80px rgba(0, 0, 0, 0.5);
+  animation: zoomIn 0.3s ease;
+}
+@keyframes zoomIn {
+  from {
+    transform: scale(0.85);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+#lb-close {
+  position: absolute;
+  top: 1.5rem;
+  right: 1.5rem;
+  color: #fff;
+  font-size: 2rem;
+  cursor: pointer;
+  background: none;
+  border: none;
+  transition: transform 0.3s;
+}
+#lb-close:hover {
+  transform: rotate(90deg);
+}
+
+/* ── PISMO ── */
+#pismo {
+  padding: 7rem 0;
+  background: var(--dark);
+  position: relative;
+  overflow: hidden;
+}
+#pismo::before {
+  content: "❤";
+  position: absolute;
+  font-size: 40vw;
+  color: rgba(255, 255, 255, 0.02);
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  line-height: 1;
+}
+.letter-wrapper {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(201, 80, 106, 0.2);
+  border-radius: 24px;
+  padding: clamp(2rem, 6vw, 4rem);
+  position: relative;
+  backdrop-filter: blur(6px);
+  max-width: 700px;
+  margin: 3rem auto 0;
+}
+.letter-wrapper::before,
+.letter-wrapper::after {
+  content: '"';
+  font-family: "Playfair Display", serif;
+  font-size: 8rem;
+  line-height: 0;
+  color: var(--rose);
+  opacity: 0.2;
+  position: absolute;
+}
+.letter-wrapper::before {
+  top: 2.5rem;
+  left: 1.5rem;
+}
+.letter-wrapper::after {
+  content: '"';
+  bottom: 1rem;
+  right: 1.5rem;
+}
+.letter-salutation {
+  font-family: "Dancing Script", cursive;
+  font-size: 1.6rem;
+  color: var(--rose);
+  margin-bottom: 1.5rem;
+  display: block;
+}
+.letter-body {
+  font-family: "Cormorant Garamond", serif;
+  font-size: clamp(1.1rem, 2.2vw, 1.3rem);
+  color: rgba(255, 255, 255, 0.82);
+  line-height: 1.9;
+  font-style: italic;
+  white-space: pre-line;
+}
+.letter-signature {
+  font-family: "Dancing Script", cursive;
+  font-size: 1.5rem;
+  color: var(--gold);
+  margin-top: 2rem;
+  display: block;
+  text-align: right;
+}
+
+/* typing cursor */
+.typed-cursor {
+  color: var(--rose);
+  animation: blink 0.7s infinite;
+}
+@keyframes blink {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+}
+
+/* ── COUNTDOWN ── */
+#odbrojavanje {
+  padding: 6rem 0;
+  background: linear-gradient(135deg, var(--blush) 0%, #fff0e6 100%);
+  text-align: center;
+}
+.countdown-grid {
+  display: flex;
+  gap: 1.2rem;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 2.5rem;
+}
+.cd-box {
+  background: #fff;
+  border-radius: 20px;
+  padding: 1.4rem 2rem;
+  min-width: 100px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+  position: relative;
+  overflow: hidden;
+}
+.cd-box::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--rose), var(--gold));
+}
+.cd-num {
+  font-family: "Playfair Display", serif;
+  font-size: 3rem;
+  font-weight: 700;
+  color: var(--rose);
+  display: block;
+  line-height: 1;
+}
+.cd-label {
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--text-soft);
+  margin-top: 0.4rem;
+}
+
+/* ── FOOTER ── */
+footer {
+  background: var(--dark);
+  color: rgba(255, 255, 255, 0.4);
+  text-align: center;
+  padding: 2.5rem;
+  font-size: 0.9rem;
+  font-style: italic;
+}
+footer span {
+  color: var(--rose);
+}
+
+/* ── ANIMATIONS ── */
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(28px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* music toggle */
+#music-btn {
+  position: fixed;
+  bottom: 1.8rem;
+  right: 1.8rem;
+  background: var(--rose);
+  color: #fff;
+  border: none;
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  font-size: 1.3rem;
+  cursor: pointer;
+  z-index: 200;
+  box-shadow: 0 6px 24px rgba(201, 80, 106, 0.4);
+  transition:
+    transform 0.3s,
+    box-shadow 0.3s;
+}
+#music-btn:hover {
+  transform: scale(1.1);
+  box-shadow: 0 10px 32px rgba(201, 80, 106, 0.5);
+}
+#music-btn.playing {
+  animation: pulse 1.5s infinite;
+}
+@keyframes pulse {
+  0%,
+  100% {
+    box-shadow: 0 6px 24px rgba(201, 80, 106, 0.4);
+  }
+  50% {
+    box-shadow: 0 6px 40px rgba(201, 80, 106, 0.7);
+  }
+}

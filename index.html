@@ -1,0 +1,214 @@
+<!doctype html>
+<html lang="sr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Srećan Rođendan ❤️</title>
+
+    <link rel="stylesheet" href="style.css" />
+
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&family=Dancing+Script:wght@600&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <!-- Custom cursor -->
+    <div id="cursor"></div>
+    <div id="cursor-trail"></div>
+
+    <!-- Particle canvas -->
+    <canvas id="particles-canvas"></canvas>
+
+    <!-- Lightbox -->
+    <div id="lightbox">
+      <button id="lb-close">✕</button>
+      <img id="lb-img" src="" alt="" />
+    </div>
+
+    <!-- Music button (muted by default – user activates) -->
+    <button id="music-btn" title="Muzika">♪</button>
+    <audio id="bg-audio" loop>
+      <source src="SERGEJ  LJUBAV (OFFICIAL VIDEO).mp3" type="audio/mpeg" />
+    </audio>
+
+    <!-- ══ NAVBAR ══ -->
+    <nav class="navbar navbar-expand-lg">
+      <div class="container">
+        <a class="navbar-brand" href="#hero">❤ Za tebe</a>
+        <button
+          class="navbar-toggler border-0"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navMenu"
+        >
+          <span style="font-size: 1.4rem; color: var(--rose)">☰</span>
+        </button>
+        <div class="collapse navbar-collapse" id="navMenu">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="#galerija">Slike</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#pismo">Pismo</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#odbrojavanje">Datum</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <!-- ══ HERO ══ -->
+    <section id="hero">
+      <div class="hero-content">
+        <span class="hero-subtitle">Srećan Rođendan,</span>
+        <h1 class="hero-title">Mojoj<span> Makici</span></h1>
+        <p class="hero-desc">
+          Sve što čovek deli sa drugima smanjuje se - osim ljubavi.
+        </p>
+        <a href="#galerija" class="hero-cta">Zaviri u naš svet ↓</a>
+      </div>
+    </section>
+
+    <!-- ══ GALERIJA ══ -->
+    <section id="galerija">
+      <div class="container">
+        <div class="text-center reveal">
+          <span class="section-label">Naše uspomene</span>
+          <h2 class="section-title">Trenuci koje <span>pamtimo</span></h2>
+          <div class="divider"></div>
+        </div>
+
+        <div class="gallery-grid" id="gallery-grid">
+          <div
+            class="gallery-item reveal"
+            data-caption="Naš prvi zajednički osmeh 💕"
+          >
+            <div class="gallery-placeholder">
+              <span class="ph-icon">🌸</span>
+              <img src="photos/more1.jpeg" alt="" />
+            </div>
+            <div class="gallery-overlay">
+              <p class="gallery-caption">Naš prvi zajednički osmeh 💕</p>
+            </div>
+          </div>
+
+          <div
+            class="gallery-item reveal"
+            data-caption="Taj dan koji ne zaboravljam"
+          >
+            <div class="gallery-placeholder">
+              <span class="ph-icon">🌊</span>
+              <img src="photos/more2.jpeg" alt="" />
+            </div>
+            <div class="gallery-overlay">
+              <p class="gallery-caption">Taj dan koji ne zaboravljam</p>
+            </div>
+          </div>
+
+          <div
+            class="gallery-item reveal"
+            data-caption="Avantura uvek bolja sa tobom"
+          >
+            <div class="gallery-placeholder">
+              <span class="ph-icon">🌟</span>
+              <img src="photos/prag.jpeg" alt="" />
+            </div>
+            <div class="gallery-overlay">
+              <p class="gallery-caption">Avantura uvek bolja sa tobom</p>
+            </div>
+          </div>
+
+          <div class="gallery-item reveal" data-caption="Smeh koji greje dušu">
+            <div class="gallery-placeholder">
+              <span class="ph-icon">🌹</span>
+              <img src="photos/svadba.jpeg" />
+            </div>
+            <div class="gallery-overlay">
+              <p class="gallery-caption">Smeh koji greje dušu</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══ PISMO ══ -->
+    <section id="pismo">
+      <div class="container">
+        <div class="text-center reveal">
+          <span class="section-label" style="color: rgba(201, 168, 76, 0.8)"
+            >Od srca</span
+          >
+          <h2 class="section-title" style="color: #fff">
+            Pismo <span>životnom saputniku</span>
+          </h2>
+          <div class="divider"></div>
+        </div>
+
+        <div class="letter-wrapper reveal">
+          <span class="letter-salutation">Draga ljubičico,</span>
+          <div class="letter-body" id="letter-text"></div>
+          <span class="letter-signature">— S ljubavlju, tvoj Necki ❤</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══ COUNTDOWN ══ -->
+    <section id="odbrojavanje">
+      <div class="container">
+        <div class="text-center reveal">
+          <span class="section-label">Tvoj veliki dan</span>
+          <h2 class="section-title">Do <span>rođendana</span> još...</h2>
+          <div class="divider"></div>
+        </div>
+
+        <div class="countdown-grid" id="countdown">
+          <div class="cd-box">
+            <span class="cd-num" id="cd-d">00</span>
+            <div class="cd-label">Dana</div>
+          </div>
+          <div class="cd-box">
+            <span class="cd-num" id="cd-h">00</span>
+            <div class="cd-label">Sati</div>
+          </div>
+          <div class="cd-box">
+            <span class="cd-num" id="cd-m">00</span>
+            <div class="cd-label">Minuta</div>
+          </div>
+          <div class="cd-box">
+            <span class="cd-num" id="cd-s">00</span>
+            <div class="cd-label">Sekundi</div>
+          </div>
+        </div>
+        <p
+          id="happy-msg"
+          class="mt-4"
+          style="
+            font-style: italic;
+            color: var(--rose);
+            font-size: 1.2rem;
+            display: none;
+          "
+        >
+          🎉 Srećan Rođendan! Danas je tvoj dan! 🎂
+        </p>
+      </div>
+    </section>
+
+    <!-- ══ FOOTER ══ -->
+    <footer>
+      <p>Napravljeno od <span>♥</span> samo za tebe &mdash; 04.05.2026</p>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="index.js"></script>
+  </body>
+</html>
